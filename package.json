@@ -1,6 +1,7 @@
 {
   "name": "sw",
   "version": "0.0.0",
+  "homepage": "star-wars-angular",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
