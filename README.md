@@ -1,5 +1,3 @@
-LOGIN: test@test.test
-PASSWORD: aaaaaaa
 
 # Sw
 
