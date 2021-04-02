@@ -1,45 +1,96 @@
+<div
+  class="shadow"
+  *ngIf="isPopUp && moviePayload"
+  (click)="closePopUp()"
+></div>
 <div class="container-fluid" *ngIf="moviePayload">
-    <form #editMovieForm="ngForm" [ngClass]="{ absolute: isPopUp === true }" (ngSubmit)="closeAndSave()">
-        <dl class="dl-horizontal">
-            <h1>{{ moviePayload.title }}</h1>
-            <dt>Movie title:</dt>
-            <dd>
-                <input type="text" class="form-control" [ngModel]="moviePayload.title" name="title" required />
-            </dd>
-            <dt>Producers:</dt>
-            <dd>
-                <input type="text" class="form-control" [ngModel]="moviePayload.producer" name="producer" required />
-            </dd>
-            <dt>Release date:</dt>
-            <dd>
-                <input type="date" class="form-control" [ngModel]="moviePayload.releaseDate" name="releaseDate" required />
-            </dd>
-            <dt>Director:</dt>
-            <dd>
-                <input type="text" class="form-control" [ngModel]="moviePayload.director" name="director" required />
-            </dd>
-            <dt>Opening crawl:</dt>
-            <dd>
-                <textarea [ngModel]="moviePayload.openingCrawl" class="form-control" name="openingCrawl" required></textarea>
-            </dd>
+  <form
+    #editMovieForm="ngForm"
+    [ngClass]="{ absolute: isPopUp === true }"
+    (ngSubmit)="closeAndSave()"
+  >
+    <dl class="dl-horizontal">
+      <h1>{{ moviePayload.title }}</h1>
+      <dt>Movie title:</dt>
+      <dd>
+        <input
+          type="text"
+          class="form-control"
+          [ngModel]="moviePayload.title"
+          name="title"
+          required
+        />
+      </dd>
+      <dt>Producers:</dt>
+      <dd>
+        <input
+          type="text"
+          class="form-control"
+          [ngModel]="moviePayload.producer"
+          name="producer"
+          required
+        />
+      </dd>
+      <dt>Release date:</dt>
+      <dd>
+        <input
+          type="date"
+          class="form-control"
+          [ngModel]="moviePayload.releaseDate"
+          name="releaseDate"
+          required
+        />
+      </dd>
+      <dt>Director:</dt>
+      <dd>
+        <input
+          type="text"
+          class="form-control"
+          [ngModel]="moviePayload.director"
+          name="director"
+          required
+        />
+      </dd>
+      <dt>Opening crawl:</dt>
+      <dd>
+        <textarea
+          [ngModel]="moviePayload.openingCrawl"
+          class="form-control"
+          name="openingCrawl"
+          required
+        ></textarea>
+      </dd>
 
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-4">
-                        <button type="button" class="btn btn-info" (click)="confirmYourDecision()">
-              <i class="bi bi-chevron-left"></i>
-              Cancel
-            </button>
-                    </div>
-                    <div class="col-md-4 col-md-offset-4 align-right">
-                        <button type="submit" class="btn btn-info" [disabled]="!editMovieForm.valid">
-              Save
-              <i class="bi bi-check2"></i>
-            </button>
-                    </div>
-                </div>
-            </div>
-        </dl>
-    </form>
+      <!-- <div class="container-fluid"> -->
+      <!-- <div class="row"> -->
+      <!-- <div class="col-md-4"> -->
+      <div class="button-container">
+        <button
+          type="button"
+          class="btn btn-info"
+          (click)="confirmYourDecision()"
+        >
+          <i class="bi bi-chevron-left"></i>
+          Cancel
+        </button>
+        <!-- </div> -->
+        <!-- <div class="col-md-4 col-md-offset-4 align-right"> -->
+        <button
+          type="submit"
+          class="btn btn-info"
+          [disabled]="!editMovieForm.valid"
+        >
+          Save
+          <i class="bi bi-check2"></i>
+        </button>
+      </div>
+      <!-- </div> -->
+      <!-- </div> -->
+      <!-- </div> -->
+    </dl>
+  </form>
 </div>
-<app-confirmation *ngIf="isConfirmationOpen" (response)="handleConfirmationResponse($event)"></app-confirmation>
+<app-confirmation
+  *ngIf="isConfirmationOpen"
+  (response)="handleConfirmationResponse($event)"
+></app-confirmation>

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { MoviesService } from '../../services/movies.service';
 import { Movie } from '../../models/movie';
+import { EditionModalService } from 'src/app/services/edition-modal.service';
 
 /**
  * Reusable component intended to let user to edit entries.
@@ -29,7 +30,7 @@ export class MoviesEditionComponent {
 
   /** Defines if the confirmation window's open */
   public isConfirmationOpen = false;
-  constructor(private moviesService: MoviesService, private router: Router) { }
+  constructor(private moviesService: MoviesService, private router: Router, private toggleService: EditionModalService) { }
 
   /**
    * Handling the response outside that component.
@@ -46,7 +47,7 @@ export class MoviesEditionComponent {
   }
   /** Emits a value that closes the popup which is this component */
   public closePopUp(): void {
-    this.isVisible.emit(true);
+    this.toggleService.movieItemSubject.next(null)
   }
   /** Triggers the opening of the confirmation window */
   public confirmYourDecision(): void {

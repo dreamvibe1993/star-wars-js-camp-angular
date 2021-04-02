@@ -33,7 +33,6 @@ export class MoviesService {
             ...this.mapper.returnMovieDTO(formPayload, indexNumber),
           });
         })
-      console.log('Document written with ID: ', docRef.id);
       return docRef;
     } catch (error) {
       console.error('Error adding document: ', error);
@@ -61,7 +60,6 @@ export class MoviesService {
    */
   public async saveChangesMovie(formPayload: MovieTransferValue, moviePayload: Movie): Promise<void> {
     try {
-      console.log(formPayload)
       await db.collection('films').doc(moviePayload.docId).
         update({
           'fields.title': formPayload.title,

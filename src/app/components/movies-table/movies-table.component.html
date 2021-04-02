@@ -1,4 +1,3 @@
-<app-movies-edition class="edition-modal" (isVisible)="isEditionModalHidden = $event" [moviePayload]="movieToDisplayInModal" [isPopUp]="true" *ngIf="!isEditionModalHidden"></app-movies-edition>
 <ng-container>
     <table class="table table-bordered">
         <app-spinner *ngIf="!myMovies$ | async"></app-spinner>

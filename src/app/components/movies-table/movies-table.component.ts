@@ -6,6 +6,7 @@ import { MoviesService } from '../../services/movies.service';
 import { Movie } from '../../models/movie';
 
 import firebase from 'firebase/app';
+import { EditionModalService } from 'src/app/services/edition-modal.service';
 
 /**
  * Component to display movies into a table.
@@ -31,22 +32,22 @@ export class MoviesTableComponent {
    */
   public sortingMethod = SortTypes.ascending;
 
-  /** Movie data to display in the editing component */
-  public movieToDisplayInModal: Movie;
+
 
   /** Editing component visibility status */
-  public isEditionModalHidden = true;
+  // public isEditionModalHidden = true;
 
   /** Getting the movies and signin status of the current user */
-  constructor(private moviesService: MoviesService, private auth: AuthService) {
+  constructor(private moviesService: MoviesService, private auth: AuthService,
+    private togglerService: EditionModalService) {
     this.myMovies$ = this.moviesService.returnMovieDataObserver();
     this.signInStatus$ = this.auth.getSignInStatus();
   }
 
   /** Toggles and displays the edition component */
   public toggleEditionModal(movies: Movie[], movieDocID: string): void {
-    this.isEditionModalHidden = false;
-    this.movieToDisplayInModal = movies.find(movie => movieDocID === movie.docId);
+    const movieToEdit = movies.find(movie => movieDocID === movie.docId)
+    this.togglerService.movieItemSubject.next(movieToEdit)
   }
   /** Swithes sort direction */
   public switchSortingMethod(): void {

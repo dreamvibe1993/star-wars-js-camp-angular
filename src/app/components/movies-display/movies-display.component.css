@@ -49,3 +49,34 @@ input.ng-invalid.ng-touched {
 .margin-left-5px {
   margin-left: 5px;
 }
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.relevant-entities-block {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: space-between;
+}
+.col-md-3 {
+  padding-left: 0px;
+}
+
+@media screen and (max-width: 414px) {
+  .relevant-entities-block {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .col-md-3 {
+    padding-left: 15px;
+  }
+}
+
+.dropdown-toggle {
+  margin-bottom: 5px;
+  width: 100%;
+}
