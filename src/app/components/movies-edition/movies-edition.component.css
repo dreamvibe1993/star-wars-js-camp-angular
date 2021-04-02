@@ -1,0 +1,49 @@
+form {
+  background: white;
+}
+
+.absolute {
+  padding: 15px;
+  border-radius: 15px;
+  width: 80%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  position: absolute;
+  z-index: 100;
+  left: 10%;
+  top: 15%;
+}
+
+.shadow {
+  content: "";
+  position: absolute;
+  background: rgba(0, 0, 0, 0.2);
+  top: 0;
+  left: 0;
+  width: 100vh;
+  height: 100vh;
+  z-index: 99;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.bi {
+  cursor: pointer;
+}
+
+.align-right {
+  text-align: right;
+}
+.col-md-4 {
+  padding: 0;
+  margin-top: 15px;
+}
+.align-center {
+  text-align: center;
+}
+
+textarea {
+  min-height: 200px;
+  resize: vertical;
+}

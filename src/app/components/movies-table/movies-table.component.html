@@ -1,0 +1,51 @@
+<app-movies-edition class="edition-modal" (isVisible)="isEditionModalHidden = $event" [moviePayload]="movieToDisplayInModal" [isPopUp]="true" *ngIf="!isEditionModalHidden"></app-movies-edition>
+<ng-container>
+    <table class="table table-bordered">
+        <app-spinner *ngIf="!myMovies$ | async"></app-spinner>
+        <tbody *ngIf="myMovies$ | async as movies">
+            <tr>
+                <th>Title</th>
+                <th>
+                    Premiere
+                    <i class="bi bi-sort-numeric-down" (click)="switchSortingMethod()" *ngIf="sortingMethod === 'asc'"></i>
+                    <i class="bi bi-sort-numeric-up-alt" (click)="switchSortingMethod()" *ngIf="sortingMethod === 'desc'"></i>
+                </th>
+            </tr>
+            <tr *ngFor="let movie of movies | sort: sortingMethod; trackBy: trackByFn">
+                <td>
+                    <div class="dropdown" appDropdown>
+                        <span class="caret"></span>
+                        <span>  {{ movie.title }}</span>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li>
+                                <a [routerLink]="['/movies/', movie.title, movie.docId]">View Details</a
+                >
+              </li>
+              <li *ngIf="signInStatus$ | async">
+                <button
+                  class="edit-button"
+                  type="button"
+                  (click)="toggleEditionModal(movies, movie.docId)"
+                  >Edit</button
+                >
+              </li>
+            </ul>
+          </div>
+        </td>
+        <td>
+          {{ movie.releaseDate | date }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="container-fluid align-left">
+    <button
+      type="button"
+      class="btn btn-primary"
+      routerLink="create"
+      *ngIf="signInStatus$ | async"
+    >
+      Create a new entry
+    </button>
+  </div>
+</ng-container>

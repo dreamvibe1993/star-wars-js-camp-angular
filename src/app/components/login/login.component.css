@@ -1,0 +1,36 @@
+form {
+  width: 20%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  position: absolute;
+  background: white;
+  z-index: 100;
+  padding: 15px;
+  border-radius: 15px;
+  left: 35%;
+  top: 15%;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.bi {
+  cursor: pointer;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.label-w-100 {
+  width: 100%;
+}
+
+.bi-x-circle {
+  background-color: transparent;
+  border: none;
+}

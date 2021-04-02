@@ -1,0 +1,24 @@
+i,
+.caret {
+  cursor: pointer;
+}
+
+.align-left {
+  text-align: start;
+}
+
+td span {
+  cursor: pointer;
+}
+
+.edit-button {
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  text-align: left;
+  padding-left: 13%;
+}
+
+.edit-button:hover {
+  background-color: rgb(245, 244, 244);
+}

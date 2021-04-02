@@ -1,0 +1,23 @@
+* {
+  --grey-border-1px: 1px solid rgb(199, 199, 199);
+  --light-grey-bg: rgb(245, 245, 245);
+}
+
+.content-table {
+  width: 100%;
+}
+
+.display_none {
+  display: none;
+}
+
+.shadow {
+  content: "";
+  position: absolute;
+  background: rgba(0, 0, 0, 0.2);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+}

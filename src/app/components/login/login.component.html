@@ -1,0 +1,64 @@
+<form (ngSubmit)="submitForm()" #loginForm="ngForm">
+  <div class="form-group align-right">
+    <button
+      class="bi bi-x-circle"
+      (click)="closeLoginModal()"
+      type="button"
+    ></button>
+  </div>
+  <span class="help-block">{{ statusMessage }}</span>
+  <div class="form-group">
+    <h2>Login</h2>
+    <label class="label-w-100"
+      >
+      <span>Email address</span>
+      <input
+        name="email"
+        type="email"
+        class="form-control"
+        id="inputEmail"
+        placeholder="Email"
+        ngModel
+        required
+        email
+        #email="ngModel"
+        #email_ref
+      />
+    </label>
+    <span *ngIf="!email.valid && email.touched" class="help-block"
+      >Please enter a valid e-mail</span
+    >
+    <span
+      *ngIf="!email.valid && !email.touched && loginForm.submitted"
+      class="help-block"
+      >Please enter your e-mail</span
+    >
+  </div>
+  <div class="form-group">
+    <label class="label-w-100"
+      >
+      <span>Password</span>
+      <input
+        name="password"
+        type="password"
+        class="form-control"
+        placeholder="Password"
+        ngModel
+        required
+        password
+        #password="ngModel"
+      />
+    </label>
+    <span *ngIf="!password.valid && password.touched" class="help-block"
+      >Please enter your password</span
+    >
+    <span
+      *ngIf="!password.valid && !password.touched && loginForm.submitted"
+      class="help-block"
+      >Please enter a password</span
+    >
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-default align-center">Submit</button>
+  </div>
+</form>

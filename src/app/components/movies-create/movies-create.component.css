@@ -1,0 +1,13 @@
+textarea {
+  resize: vertical;
+  margin-bottom: 15px;
+}
+
+input.ng-invalid.ng-touched {
+  background-color: rgb(255, 225, 225);
+}
+
+.align-right {
+  text-align: end;
+  padding: 0;
+}

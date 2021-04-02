@@ -1,0 +1,51 @@
+input {
+  padding: 4px;
+  margin: 0;
+  line-height: 0.9;
+  width: 100%;
+  border: var(--grey-border-1px);
+  border-bottom: none;
+  background-color: var(--light-grey-bg);
+}
+
+textarea {
+  width: 100%;
+  min-height: 120px;
+  resize: none;
+  padding: 4px;
+  border: none;
+  border: var(--grey-border-1px);
+  background-color: var(--light-grey-bg);
+}
+
+.crawl {
+  word-wrap: break-word;
+}
+
+input:focus,
+textarea:focus {
+  background-color: white;
+}
+
+input.ng-invalid.ng-touched {
+  background-color: rgb(255, 225, 225);
+}
+
+.align-right {
+  text-align: end;
+  padding: 0;
+}
+
+.dropdown-menu {
+  max-height: 250px;
+  cursor: pointer;
+  overflow-y: auto;
+}
+
+.margin-top-15px {
+  margin-top: 15px;
+}
+
+.margin-left-5px {
+  margin-left: 5px;
+}
