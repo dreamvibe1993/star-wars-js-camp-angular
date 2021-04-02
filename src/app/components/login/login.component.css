@@ -1,5 +1,5 @@
 form {
-  width: 20%;
+  min-width: 337px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   position: absolute;
   background: white;
@@ -8,6 +8,14 @@ form {
   border-radius: 15px;
   left: 35%;
   top: 15%;
+}
+
+@media screen and (max-width: 414px) {
+  form {
+    left: 2%;
+    top: 15%;
+    width: 95%; 
+  }
 }
 
 input.ng-invalid.ng-touched {

@@ -1,12 +1,14 @@
 import { Component, ViewChild, HostListener, DoCheck, ElementRef, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { first, map } from 'rxjs/operators';
+import { Movie } from './models/movie';
 
 import { AuthService } from './services/auth.service';
 import { LoginStateService } from './services/login-state.service';
 import { MoviesService } from './services/movies.service';
+import { EditionModalService } from './services/edition-modal.service';
 
 /** Initial app component */
 @Component({
@@ -25,6 +27,9 @@ export class AppComponent implements DoCheck, AfterViewInit {
    * Getting the navbar brand elementRef (top left corner <a> element).
    */
   @ViewChild('navbar_brand') public navbarBrand: ElementRef;
+
+  @ViewChild('navbar_mobile_menu') public navbarMenuMobile: ElementRef;
+
 
   /**
    * It was here since the beginning. Afraid to delete.
@@ -52,10 +57,15 @@ export class AppComponent implements DoCheck, AfterViewInit {
   /** Active class status for 'people label' at the main screen */
   public isPeopleActive: boolean;
 
+  /** Movie to display observer for editing popup */
+  public movieToDisplay$: BehaviorSubject<Movie>;
+
   /** Getting signin status from the very beginning */
   constructor(private router: Router, private loginStateService: LoginStateService,
-              private auth: AuthService, private moviesService: MoviesService) {
+    private auth: AuthService, private moviesService: MoviesService,
+    private togglerService: EditionModalService) {
     this.signInStatus$ = this.auth.getSignInStatus();
+    this.movieToDisplay$ = togglerService.movieItemSubject
   }
 
   /**
@@ -105,6 +115,14 @@ export class AppComponent implements DoCheck, AfterViewInit {
   }
 
   /**
+   * Hides login modal window.
+   */
+  public hideLoginModal(): void {
+    this.loginStateService.noKeyboardPagination = false;
+    this.loginStateService.loginModalVisibility = false;
+  }
+
+  /**
    * Pasting the movie's title into url and navigates accordingly.
    */
   public findMovie(): void {
@@ -141,5 +159,9 @@ export class AppComponent implements DoCheck, AfterViewInit {
     } else {
       this.loginStateService.noKeyboardPagination = false;
     }
+  }
+
+  public toggleNavbarMenuVisibility(): void {
+    this.navbarMenuMobile.nativeElement.classList.toggle('collapse')
   }
 }

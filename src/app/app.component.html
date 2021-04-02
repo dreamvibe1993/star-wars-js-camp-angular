@@ -3,14 +3,28 @@
   class="login-modal"
   *ngIf="loginModalVisibility"
 ></app-login>
-<div class="shadow" *ngIf="loginModalVisibility"></div>
-
+<app-movies-edition *ngIf="movieToDisplay$ | async" [moviePayload]="movieToDisplay$ | async" [isPopUp]="true"></app-movies-edition>
+<div class="shadow" *ngIf="loginModalVisibility" (click)="hideLoginModal()"></div>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
+      <button
+        type="button"
+        class="navbar-toggle collapsed"
+        data-toggle="collapsed"
+        data-target="#navbar-options"
+        aria-expanded="false"
+        (click)="toggleNavbarMenuVisibility()"
+      >
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
       <a class="navbar-brand" routerLink="/movies" #navbar_brand>StarWars</a>
     </div>
-    <div class="collapse navbar-collapse">
+
+    <div class="navbar-collapse collapse" id="navbar-options" #navbar_mobile_menu>
       <form
         class="navbar-form navbar-left"
         role="search"
@@ -37,7 +51,6 @@
           Search
         </button>
       </form>
-
       <form class="navbar-form navbar-right">
         <button
           type="button"
@@ -79,7 +92,6 @@
       </ul>
 
       <router-outlet></router-outlet>
-
     </div>
   </div>
 </div>

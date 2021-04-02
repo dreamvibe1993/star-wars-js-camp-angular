@@ -1,82 +1,119 @@
 <app-spinner *ngIf="!(spinnerVisibility$ | async)"></app-spinner>
 <div class="container-fluid" *ngIf="isElementHidden">
-    <dl class="dl-horizontal" *ngIf="displayFormVisibility$ | async as foundInfo">
-        <h1>{{ foundInfo.title }}</h1>
-        <dt>Movie title:</dt>
-        <dd>{{ foundInfo.title }}</dd>
-        <dt>Producers:</dt>
-        <dd>{{ foundInfo.producer }}</dd>
-        <dt>Release date:</dt>
-        <dd>{{ foundInfo.releaseDate | date }}</dd>
-        <dt>Director:</dt>
-        <dd>{{ foundInfo.director }}</dd>
-        <dt>Opening crawl:</dt>
-        <dd class="crawl">{{ foundInfo.openingCrawl }}</dd>
-    </dl>
-    <div class="row margin-top-15px">
-        <div class="col-md-4">
-            <button class="btn btn-info" type="button" routerLink="../../">
+  <dl class="dl-horizontal" *ngIf="displayFormVisibility$ | async as foundInfo">
+    <h1>{{ foundInfo.title }}</h1>
+    <dt>Movie title:</dt>
+    <dd>{{ foundInfo.title }}</dd>
+    <dt>Producers:</dt>
+    <dd>{{ foundInfo.producer }}</dd>
+    <dt>Release date:</dt>
+    <dd>{{ foundInfo.releaseDate | date }}</dd>
+    <dt>Director:</dt>
+    <dd>{{ foundInfo.director }}</dd>
+    <dt>Opening crawl:</dt>
+    <dd class="crawl">{{ foundInfo.openingCrawl }}</dd>
+  </dl>
+  <div class="button-container">
+    <div>
+      <button class="btn btn-info" type="button" routerLink="../../">
         <i class="bi bi-chevron-left"></i>
         Back
       </button>
-        </div>
-        <div class="col-md-4 col-md-offset-4 align-right">
-            <button type="button" class="btn btn-default" routerLink="edit" (click)="isElementHidden = !isElementHidden" *ngIf="signInStatus$ | async">
+    </div>
+
+    <div>
+      <button
+        type="button"
+        class="btn btn-default"
+        routerLink="edit"
+        (click)="isElementHidden = !isElementHidden"
+        *ngIf="signInStatus$ | async"
+      >
         Edit
       </button>
-            <button type="button" class="btn btn-default margin-left-5px" (click)="deleteMovie()" *ngIf="signInStatus$ | async" routerLink="/movies">
+      <button
+        type="button"
+        class="btn btn-default margin-left-5px"
+        (click)="deleteMovie()"
+        *ngIf="signInStatus$ | async"
+        routerLink="/movies"
+      >
         Delete
       </button>
-        </div>
     </div>
-    <div class="row margin-top-15px">
-        <div class="container-fluid" *ngIf="moviesWithTheSameTitles[0]">
-            <div class="dropdown" appDropdown>
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+  </div>
+
+  <div class="relevant-entities-block">
+    <div class="col-md-3" *ngIf="moviesWithTheSameTitles[0]">
+      <div class="dropdown" appDropdown>
+        <button
+          class="btn btn-default dropdown-toggle"
+          type="button"
+          id="dropdownMenu1"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="true"
+        >
           Movies with the same title:
           <span class="caret"></span>
         </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li *ngFor="let movie of moviesWithTheSameTitles; index as index">
-                        <a [routerLink]="['/movies/', movie.title, movie.docId]">{{ movie.title }}
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li *ngFor="let movie of moviesWithTheSameTitles; index as index">
+            <a [routerLink]="['/movies/', movie.title, movie.docId]"
+              >{{ movie.title }}
               <span class="help-block">{{ movie.director }}</span>
             </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+          </li>
+        </ul>
+      </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-3">
-            <div class="dropdown" *ngIf="myPeople$ | async as people" appDropdown>
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <div class="col-md-3">
+      <div class="dropdown" *ngIf="myPeople$ | async as people" appDropdown>
+        <button
+          class="btn btn-default dropdown-toggle"
+          type="button"
+          id="dropdownMenu1"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="true"
+        >
           Show relevant characters
           <span class="caret"></span>
         </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li *ngFor="let person of people">
-                        <a>{{ person.fields.name }}</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="dropdown" *ngIf="myPlanet$ | async as planets" appDropdown>
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li *ngFor="let person of people">
+            <a>{{ person.fields.name }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="dropdown" *ngIf="myPlanet$ | async as planets" appDropdown>
+        <button
+          class="btn btn-default dropdown-toggle"
+          type="button"
+          id="dropdownMenu1"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="true"
+        >
           Show relevant planets
           <span class="caret"></span>
         </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li *ngFor="let planet of planets">
-                        <a>{{ planet.fields.name }}</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li *ngFor="let planet of planets">
+            <a>{{ planet.fields.name }}</a>
+          </li>
+        </ul>
+      </div>
     </div>
+  </div>
 </div>
 
-<ng-container *ngIf="editFormVisibility$ | async as foundInfo">
-    <app-movies-edition class="edition-modal" (isVisible)="isElementHidden = $event" *ngIf="!isElementHidden" [isPopUp]="false" [moviePayload]="foundInfo"></app-movies-edition>
-</ng-container>
+  <app-movies-edition
+    *ngIf="!isElementHidden"
+    [isPopUp]="false"
+    [moviePayload]="editFormVisibility$ | async"
+  ></app-movies-edition>
