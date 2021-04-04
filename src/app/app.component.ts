@@ -1,6 +1,6 @@
 import { Component, ViewChild, HostListener, DoCheck, ElementRef, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 import { Movie } from './models/movie';
@@ -60,12 +60,20 @@ export class AppComponent implements DoCheck, AfterViewInit {
   /** Movie to display observer for editing popup */
   public movieToDisplay$: BehaviorSubject<Movie>;
 
+  /** Current location segment */
+  public locationURLSegment: string;
+
   /** Getting signin status from the very beginning */
   constructor(private router: Router, private loginStateService: LoginStateService,
     private auth: AuthService, private moviesService: MoviesService,
-    private togglerService: EditionModalService) {
+    private editionModalStatus: EditionModalService, private route: ActivatedRoute) {
     this.signInStatus$ = this.auth.getSignInStatus();
-    this.movieToDisplay$ = togglerService.movieItemSubject
+    this.movieToDisplay$ = editionModalStatus.movieItemSubject
+
+    router.events.subscribe(val => {
+      this.locationURLSegment = location.pathname
+    });
+
   }
 
   /**

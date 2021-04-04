@@ -22,10 +22,12 @@ import { AuthGuard } from './guards/auth.guard';
 import { MoviesCreateComponent } from './components/movies-create/movies-create.component';
 import { MoviesEditionComponent } from './components/movies-edition/movies-edition.component';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
+import { AboutPageComponent } from './components/about-page/about-page.component';
 
 
 const appRoutes: Routes = [
   { path: 'movies', component: MoviesTableComponent },
+  { path: 'about', component: AboutPageComponent },
   { path: 'movies/create', component: MoviesCreateComponent, canActivate: [AuthGuard], pathMatch: 'full' },
   { path: 'movies/:details/:movieID', component: MoviesDisplayComponent },
   { path: 'movies/:details/:movieID/edit', component: MoviesDisplayComponent, canActivate: [AuthGuard] },
@@ -53,6 +55,7 @@ const appRoutes: Routes = [
     MoviesCreateComponent,
     MoviesEditionComponent,
     ConfirmationComponent,
+    AboutPageComponent,
   ],
   imports: [
     BrowserModule,

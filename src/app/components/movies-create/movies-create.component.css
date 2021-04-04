@@ -11,3 +11,8 @@ input.ng-invalid.ng-touched {
   text-align: end;
   padding: 0;
 }
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
